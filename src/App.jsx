@@ -1,13 +1,12 @@
 import React from 'react';
-import './App.css'
-import Cosmetics from './components/Cosmetics/Cosmetics';
-import Shoes from './components/Shoes/Shoes';
+import Header from './components/Header/Header';
+import Shop from './components/Shop/Shop';
 
 const App = () => {
   return (
     <div>
-      <Cosmetics></Cosmetics>
-      <Shoes></Shoes>
+      <Header></Header>
+      <Shop></Shop>
     </div>
   );
 };
