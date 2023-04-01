@@ -9,7 +9,7 @@ const Shop = () => {
         const newCart = [...cart,product]
         setCart(newCart)
     }
-
+    
     useEffect(() => {
         fetch('products.json')
             .then(res=> res.json())
@@ -28,7 +28,9 @@ const Shop = () => {
         </div>
         <div className="cart-container space-y-3 bg-pink-100 p-2 rounded-xl">
             <h2 className='text-2xl font-bold text-center'>Order Summary</h2>
-            <h1 className='text-xl'>Selected Items: <span className='font-bold'>{cart.length}</span></h1>
+            <h1 className='text-xl'>Selected Items: <span className='font-bold'>{cart.length}
+            <p>name: </p>
+            </span></h1>
         </div>
        </div>
     );
