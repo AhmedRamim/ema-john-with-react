@@ -4,9 +4,9 @@ const Product = (props) => {
     const { img, name, price, seller, ratings } = props.product;
     const handleAddToCart = props.handleAddToCart;
     return (
-        <div className="card overflow-hidden  border-2  border-gray-300 w-full h-[510px] bg-base-100 shadow-xl">
+        <div className="card overflow-hidden  border-2  border-gray-300 w-full h-[510px] bg-base-100 shadow-xl  sticky top-0">
             <figure className="p-2 h-[300px] mt-2 rounded-2xl">
-                <img src={img} alt="Shoes" className="" />
+                <img src={img ? img :''} alt="Shoes" className="" />
             </figure>
 
             <div className=" relative">
