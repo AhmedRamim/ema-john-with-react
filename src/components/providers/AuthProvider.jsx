@@ -10,14 +10,18 @@ const AuthProvider = ({children}) => {
     const [loading,setLoading] = useState(true);
 
     const createUser = (email,password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
     const login = (email,password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth,email,password)
     }
     const logOut = () => {
         signOut(auth)
+        .then(result => {})
+        .catch(error => console.log(error))
     }
 
     // observer user auth state

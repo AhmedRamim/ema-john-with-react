@@ -1,27 +1,33 @@
-import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 
 
 
 const Login = () => {
     const {login} = useContext(AuthContext)
+    const [error,setError] = useState('')
+    const [show , setShow ] = useState(false)
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/'
 
     const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
+        e.target.reset()
+        setError('')
         
         login(email,password)
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
-            e.target.reset()
-            navigate('/')
+            navigate(from,{replace:true})
         })
         .catch(error => {
             console.log(error.message);
+            setError(error.message)
         })
     }
 
@@ -39,11 +45,12 @@ const Login = () => {
                             </label>
                             <input type="email" name='email' required placeholder="email" className="input input-bordered" />
                         </div>
-                        <div className="form-control">
+                        <div className="form-control relative">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" name='password' required placeholder="password" className="input input-bordered" />
+                            <input type={show ? "text" : "password"} name='password' required placeholder="password" className="input input-bordered" />
+                            <h1 onClick={()=>setShow(!show)} className='font-bold btn-link cursor-pointer relative -top-9 left-64 '>{show ? 'Hide' :'Show'}</h1>
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
@@ -51,6 +58,7 @@ const Login = () => {
                         <div className="form-control mt-6">
                             <button className="btn bg-orange-300 hover:bg-orange-500 border-none  text-white">Login</button>
                         </div>
+                        <p className='text-error'>{error}</p>
                         <div>
                             <p>New to Ema-John?<Link className='btn-link pl-2' to='/signup'>Create an Account</Link></p>
                         </div>

@@ -6,8 +6,7 @@ const Header = () => {
     const {user,logOut} = useContext(AuthContext)
     const handleSignOut = () => {
         logOut()
-        .then(result => {})
-        .catch(error => console.log(error))
+        
     }
     return (
         <div className='bg-[#1C2B35] w-full  md:px-16   overflow-x-auto'>
